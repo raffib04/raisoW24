@@ -8,6 +8,8 @@
     },
     "dependencies": {
         "@heroicons/react": "^2.0.18",
+        "@nodelib/fs.scandir": "^3.0.0",
+        "@swc/helpers": "^0.5.3",
         "@tailwindcss/forms": "^0.5.6",
         "@types/node": "20.5.7",
         "@vercel/postgres": "^0.5.1",
