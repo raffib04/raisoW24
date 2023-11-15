@@ -1,13 +1,99 @@
-// This file contains type definitions for your data.
-// It describes the shape of the data, and what data type each property should accept.
-// For simplicity of teaching, we're manually defining these types.
-// However, these types are generated automatically if you're using an ORM such as Prisma.
+//File to store all the types and interfaces used in the app
+
+//User type to represent the user object in the database, and the user object in the app
 export type User = {
     id: string;
     name: string;
     email: string;
     password: string;
+    planType: "free" | "basic" | "premium";
+    listings: Listing[];
+    createdAt: Date;
+    updatedAt: Date;
 };
+
+//Product type to represent different products in the app
+type Product = {
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+};
+
+//Form fields for the login and registration forms
+type LoginFormFields = {
+    email: string;
+    password: string;
+};
+
+type RegistrationFormFields = {
+    name: string;
+    email: string;
+    username: string;
+    password: string;
+    confirmPassword: string;
+};
+
+//User settings to represent the user's settings and preferences as gathered from the settings form and or settings page
+type UserSettings = {
+    siteTheme: "light" | "dark";
+    currency: "usd" | "eur" | "gbp";
+    language: "en";
+};
+
+// Auth state to represent the state of the user's authentication
+type UserAuthState = {
+    isLoggedIn: boolean;
+    token?: string;
+    user: User | null;
+};
+
+///Api response types
+
+type AppError = {
+    code: number;
+    message: string;
+};
+
+type ApiResponse<T> = {
+    status: "success" | "error";
+    data?: T;
+    message?: string;
+};
+
+type UserResponse = ApiResponse<User>;
+
+//User generated listings
+
+type Listing = {
+    id: string; //unique id for the listing
+    userId: string; //id of the user who created the listing
+    title: string;
+    description: string;
+    category: Category;
+    price: number;
+    images: string[];
+    tags: string[];
+    createdAt: Date;
+    updatedAt: Date;
+};
+
+type Category = {
+    id: string;
+    name: string;
+    description?: string;
+};
+
+type AIListingRecommendation = {
+    id: string;
+    listingId: string;
+    recommendations: string[];
+    createdAt: Date;
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export type Customer = {
     id: string;
